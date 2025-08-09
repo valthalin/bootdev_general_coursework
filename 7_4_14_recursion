@@ -1,0 +1,16 @@
+def find_longest_word(document, longest_word=""):
+    word = document.split(" ", maxsplit=1)
+    if 1 < len(word):
+        longest_word = check_word(word[0], longest_word)
+        longest_word = find_longest_word(word[1], longest_word)
+    else:
+        longest_word = check_word(word[0], longest_word)
+        
+    return longest_word
+
+
+def check_word(new, base):
+    result = ""
+    if len(new) > len(base):
+        base = new
+    return base
