@@ -1,0 +1,18 @@
+def list_files(parent_directory, current_filepath=""):
+    # Start of Frame
+
+    # Local variable to current frame (discarded when frame is resolved)
+    paths = []
+
+    # In theory each frame of parent_directory is ALWAYS a dictionary File {file_name.blah : None} or {dir_name : {items . . .}}
+    for key in parent_directory.keys():
+        # We want all the files from this dict item in this for loop
+        if None == parent_directory[key]:
+            paths.append(current_filepath + f"/{key}")
+        # If we have a dictionary we want to dig deeper and send the dictionary item and the current file path + the dictionary item's key
+        elif isinstance(parent_directory[key], dict):
+            # This will return any number of path lists
+            paths.extend(list_files(parent_directory[key], current_filepath + f"/{key}"))
+    
+    # This returns all the collected paths
+    return paths
