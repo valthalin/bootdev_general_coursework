@@ -1,0 +1,7 @@
+def factorial_r(x):
+    if 0 == x:
+        return 1
+    if 1 == x:
+        return x
+    else:
+        return x * factorial_r(x-1)
