@@ -1,0 +1,27 @@
+def filter_noneZero(number):
+    if isinstance(number, list):
+        for num in set(number):
+            if 0 < num:
+                return num
+    return -1
+
+    
+def count_nested_levels(nested_documents, target_document_id, level=1):
+    search_id = []
+    if 0 < len(nested_documents):
+        for doc in nested_documents:
+            if doc == target_document_id:
+                search_id.append(level)
+            else:
+                result = count_nested_levels(nested_documents[doc], target_document_id, level+1)
+                if isinstance(result, list):
+                    search_id.extend(result)
+                elif isinstance(result, int):
+                    return result
+    else:
+        search_id.append(-1)
+
+    if 1 == level:
+        return filter_noneZero(search_id)
+            
+    return search_id
