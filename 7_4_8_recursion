@@ -1,0 +1,8 @@
+def sum_nested_list(lst):
+    byte_size = 0
+    for file in lst:
+        if isinstance(file, int):
+            byte_size += file
+        if isinstance(file, list):
+            byte_size += sum_nested_list(file)
+    return byte_size
